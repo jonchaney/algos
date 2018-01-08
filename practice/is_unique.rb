@@ -7,19 +7,42 @@
 
 def is_unique_with_hash?(str)
   hash = {}
-  str.each_char do |char|
-    if hash[char]
+  str.each_char do |ch|
+    if hash[ch]
       return false
     else 
-      hash[char] = true
+      hash[ch] = true
     end 
   end 
   true
 end 
 
 p is_unique_with_hash?("n")
+p is_unique_with_hash?("jon")
+p is_unique_with_hash?("jonn")
 
-# goal: O(n), no extra space used
+# no extra space used
+# O(n*n-1)
+def is_unique_no_extra_space?(str)
+  i = 0
+  while i < str.length 
+    j = i+1
+    while j < str.length 
+      if str[i] == str[j]
+        return false
+      end 
+      j+=1
+    end 
+    i+=1
+  end   
+  true
+end 
+
+p is_unique_no_extra_space?("n")
+p is_unique_no_extra_space?("jon")
+p is_unique_no_extra_space?("jonn")
+
+
 def is_unique?(str)
-  
+
 end 
