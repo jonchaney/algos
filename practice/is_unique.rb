@@ -22,7 +22,7 @@ p is_unique_with_hash?("jon")
 p is_unique_with_hash?("jonn")
 
 # no extra space used
-# O(n*n-1)
+# O(n^2/2) == O(n^2)
 def is_unique_no_extra_space?(str)
   i = 0
   while i < str.length 
@@ -42,7 +42,19 @@ p is_unique_no_extra_space?("n")
 p is_unique_no_extra_space?("jon")
 p is_unique_no_extra_space?("jonn")
 
-
+# can we do better? if the string only contains letters we can sort the string and check for adjacent
+# characters
+# this method does not use extra space
+# O(n log n) 
 def is_unique?(str)
-
+  str = str.chars.sort
+  str.each_with_index do |letter, idx|
+    next if idx == str.length
+    return false if str[idx] == str[idx++1]
+  end 
+  true
 end 
+
+p is_unique?("n")
+p is_unique?("jon")
+p is_unique?("jonn")
