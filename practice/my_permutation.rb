@@ -39,3 +39,17 @@ end
 
 
 p cracking_the_coding_permutations("abc")
+
+# my permutations
+
+def my_permutations(str)
+  return str if str.length == 1
+  perms = []
+  prefix = my_permutations(str[0..-2])  
+  str.length.times do |idx|
+    perms.push(str[idx] + prefix)
+  end 
+  perms
+end 
+
+p my_permutations("ab")
