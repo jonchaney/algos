@@ -1,4 +1,5 @@
 # find the permutations of a given str
+# brute force iterative
 def my_permutations(str)
   arr = str.chars
   result = []
