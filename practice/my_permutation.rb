@@ -1,6 +1,6 @@
 # find the permutations of a given str
 # brute force iterative
-def my_permutations(str)
+def my_permutations_brute_force(str)
   arr = str.chars
   result = []
   arr.length.times do |idx1| 
@@ -14,6 +14,28 @@ def my_permutations(str)
   result
 end 
 
+p my_permutations_brute_force("abc")
+
+# from cracking the coding interview, from java into ruby.
+# modified to push perms into an array
+def cracking_the_coding_permutations(str)
+  arr = []
+  permutation(str, "", arr)
+end 
+
+def permutation(str, prefix,arr)
+  if str.length == 0
+    arr.push(prefix)
+  else 
+    idx = 0
+    while idx < str.length
+      rem = str[0...idx] + str[idx+1..-1]
+      permutation(rem, prefix + str[idx], arr)
+      idx+=1
+    end 
+  end 
+  arr
+end 
 
 
-p my_permutations("abc")
+p cracking_the_coding_permutations("abc")
