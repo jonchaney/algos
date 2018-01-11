@@ -42,14 +42,29 @@ p cracking_the_coding_permutations("abc")
 
 # my permutations
 
-def my_permutations(str)
-  return str if str.length == 1
+def my_permutations(arr)
+  return [[]] if arr.empty?
   perms = []
-  prefix = my_permutations(str[0..-2])  
-  str.length.times do |idx|
-    perms.push(str[idx] + prefix)
-  end 
+  arr.length.times do |i|
+    el = arr[i]
+    rest = arr.take(i) + arr.drop(i + 1)
+    new_perms = my_permutations(rest).map { |perm| perm.unshift(el) }
+    perms.concat(new_perms)
+  end
   perms
-end 
+end
 
-p my_permutations("ab")
+def my_permutations(str)
+  return [[]] if str.empty?
+  perms = []
+  str.length.times do |i|
+    el = str[i]
+    rest = str[0...i] + str[i+1..-1]
+    new_perms = my_permutations(rest).map { |perm| perm.unshift(el) }
+    perms.concat(new_perms)
+  end
+  perms
+end
+
+
+p my_permutations(["a","b","c"])
