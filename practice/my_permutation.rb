@@ -62,9 +62,10 @@ def my_permutations(str)
     rest = str[0...i] + str[i+1..-1]
     new_perms = my_permutations(rest).map { |perm| perm.unshift(el) }
     perms.concat(new_perms)
+    p perms
   end
   perms
 end
 
 
-p my_permutations(["a","b","c"])
+p my_permutations("abc")
