@@ -1,5 +1,6 @@
-# time complexity O(nm)
+# time complexity O(n+m) -- O(n)
 # space complexity, uses an extra array
+# this is a good solution
 def urlify(str)
   result = ""
   # split the string in to arr, remove white space -- O(n)
