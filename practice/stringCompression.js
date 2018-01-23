@@ -20,6 +20,7 @@ const stringCompression = (str) => {
 
 console.log(stringCompression("aabbccc"));
 
+// avoid multiple string concatenations by using an array and .join when returning
 const stringCompressionOptimized = (str) => {
   let compressed = [];
   let countConsecutive = 0;
@@ -28,8 +29,8 @@ const stringCompressionOptimized = (str) => {
 
     // if next character is different than current, append this char to result.
     if (i + 1 >= str.length || str.charAt(i) != str.charAt(i + 1)) {
-      compressed.append(str.charAt(i));
-      compressed.append(countConsecutive);
+      compressed.push(str.charAt(i));
+      compressed.push(countConsecutive);
       countConsecutive = 0;
     }
   }
