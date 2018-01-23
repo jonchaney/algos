@@ -31,7 +31,7 @@ const oneEditReplace = (str1, str2) => {
 const oneEditInsert = (str1, str2) => {
   let idx1 = 0;
   let idx2 = 0;
-  while (idx2 < str2.length && idx1 <str1.length) {
+  while (idx2 < str2.length && idx1 < str1.length) {
     if (str1.charAt(idx1) !== str2.charAt(idx2)) {
       if (idx1 !== idx2) {
         return false;
@@ -47,4 +47,4 @@ const oneEditInsert = (str1, str2) => {
 
 
 
-console.log(oneEditAway("pale","pale"));
+console.log(oneEditAway("ple","plaj"));
