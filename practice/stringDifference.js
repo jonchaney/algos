@@ -21,6 +21,7 @@ const oneEditReplace = (str1, str2) => {
       if (foundDifference) {
         return false;
       }
+      // found one difference
       foundDifference = true;
     }
   }
@@ -47,4 +48,4 @@ const oneEditInsert = (str1, str2) => {
 
 
 
-console.log(oneEditAway("ple","plaj"));
+console.log(oneEditAway("pale","pala"));
