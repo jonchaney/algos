@@ -16,33 +16,67 @@ const rotateMatrixBrute = (matrix) => {
   return result;
 };
 
-console.log(rotateMatrixBrute([[1, 2, 3],
-                               [4, 5, 6],
-                               [7, 8, 9]]
-                              ));
-
-console.log(rotateMatrixBrute([[2, 4],
-                               [5, 6]]
-                              ));
-
-// in place rotation
+// in place rotation 
+// O(n)
+// swap each edge and decrement along the way
 const rotateMatrix = (matrix) => {
-  let result = [];
-  // O(m*n)
-  for (let i = 0; i < matrix[0].length; i++) {
-    result.push([]);
-    for (let j = matrix.length - 1; j >= 0; j--) {
-      result[i].push(matrix[j][i]);
+  if (matrix.length === 0 || matrix.length !== matrix[0].length) return false;
+  let n = matrix.length;
+  for (let layer = 0; layer < n / 2; layer++) {
+    let first = layer;
+    let last = n - 1 - layer;
+    for (let i = first; i < last; i++) {
+      let offset = i - first;
+      let top = matrix[first][i]; // save top
+
+      // left -> top
+      matrix[first][i] = matrix[last-offset][first];
+
+      // bottom -> left
+      matrix[last-offset][first] = matrix[last][last-offset];
+
+      // right -> bottom 
+      matrix[last][last-offset] = matrix[i][last];
+
+      // top -> right
+      matrix[i][last] = top; // right <- saved top
     }
   }
-  return result;
+  return matrix;
 };
 
+
+// [ [ 5, 2 ], 
+//   [ 6, 4 ] ]
+console.log(rotateMatrix([[2, 4],
+                          [5, 6]]
+                          ));
+
+
+// [ [ 7, 4, 1 ], 
+//   [ 8, 5, 2 ], 
+  // [ 9, 6, 3 ] ]
 console.log(rotateMatrix([[1, 2, 3],
                           [4, 5, 6],
                           [7, 8, 9]]
                           ));
 
-console.log(rotateMatrix([[2, 4],
-                          [5, 6]]
+// [7, 4, 1],
+// [8, 5, 2],
+// [9, 6, 3]]
+
+// [ [ 7, 7, 4, 1 ], 
+//   [ 8, 8, 5, 2 ], 
+//   [ 9, 9, 6, 3 ],
+//   [ 9, 9, 9, 9 ] ]
+console.log(rotateMatrix([[1, 2, 3, 9],
+                          [4, 5, 6, 9],
+                          [7, 8, 9, 9],
+                          [7, 8, 9, 9]]
                           ));
+
+// [[1, 2, 3, 9],
+// [4, 5, 6, 9],
+// [7, 8, 9, 9],
+// [7, 8, 9, 9]]
+                     
