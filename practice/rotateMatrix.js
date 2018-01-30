@@ -17,46 +17,55 @@ const rotateMatrixBrute = (matrix) => {
 };
 
 // in place rotation 
-// O(n)
+// O(n^2)
 // swap each edge and decrement along the way
 const rotateMatrix = (matrix) => {
   if (matrix.length === 0 || matrix.length !== matrix[0].length) return false;
-  let n = matrix.length;
-  for (let layer = 0; layer < n / 2; layer++) {
-    let first = layer;
-    let last = n - 1 - layer;
+  let length = matrix.length;
+  for (let layer = 0; layer < length / 2; layer++) {
+    let first = layer; 
+    let last = length - 1 - layer;
     for (let i = first; i < last; i++) {
-      let offset = i - first;
-      let top = matrix[first][i]; // save top
-
+      let offset = i - first; 
+      let top = matrix[first][i]; // save top 
       // left -> top
-      matrix[first][i] = matrix[last-offset][first];
-
+      matrix[first][i] = matrix[last-offset][first]; 
+      
       // bottom -> left
       matrix[last-offset][first] = matrix[last][last-offset];
-
+      
       // right -> bottom 
       matrix[last][last-offset] = matrix[i][last];
-
+      
       // top -> right
       matrix[i][last] = top; // right <- saved top
+      printMatrix(matrix);
     }
   }
   return matrix;
 };
 
+const printMatrix = (matrix) => {
+  console.log("------");
+  for (let i = 0; i < matrix.length; i++) {
+    console.log(matrix[i]);
+  }
+};
 
 // [ [ 5, 2 ], 
 //   [ 6, 4 ] ]
-console.log(rotateMatrix([[2, 4],
-                          [5, 6]]
-                          ));
+// console.log(rotateMatrix([[2, 4],
+//                           [5, 6]]
+//                           ));
 
 
 // [ [ 7, 4, 1 ], 
 //   [ 8, 5, 2 ], 
   // [ 9, 6, 3 ] ]
-console.log(rotateMatrix([[1, 2, 3],
+printMatrix([[1, 2, 3],
+[4, 5, 6],
+[7, 8, 9]]);
+printMatrix(rotateMatrix([[1, 2, 3],
                           [4, 5, 6],
                           [7, 8, 9]]
                           ));
@@ -69,10 +78,14 @@ console.log(rotateMatrix([[1, 2, 3],
 //   [ 8, 8, 5, 2 ], 
 //   [ 9, 9, 6, 3 ],
 //   [ 9, 9, 9, 9 ] ]
-console.log(rotateMatrix([[1, 2, 3, 9],
-                          [4, 5, 6, 9],
-                          [7, 8, 9, 9],
-                          [7, 8, 9, 9]]
+printMatrix([[1, 2, 3, 4],
+[5, 6, 7, 8],
+[9, 10, 11, 12],
+[13, 14, 15, 16]]);
+printMatrix(rotateMatrix([[1, 2, 3, 4],
+                          [5, 6, 7, 8],
+                          [9, 10, 11, 12],
+                          [13, 14, 15, 16]]
                           ));
 
 // [[1, 2, 3, 9],
