@@ -2,7 +2,7 @@
 // the entire row and colunm are set to zero.
 
 // brute force
-// O(n)
+// O(n^2)
 // keep track of what rows and columns the zeros are in
 // iterate over matrix again changing those rows and columns to zero
 const zeroMatrixBrute = (matrix) => {
