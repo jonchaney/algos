@@ -2,10 +2,10 @@
 // the entire row and colunm are set to zero.
 
 // brute force
-// O(n^2)
+// O(nm)
 // keep track of what rows and columns the zeros are in
 // iterate over matrix again changing those rows and columns to zero
-const zeroMatrixBrute = (matrix) => {
+const zeroMatrix = (matrix) => {
   let rows = []; 
   let columns = [];
 
@@ -40,4 +40,4 @@ let matrix = [[1,2,6],
               [3,0,7],
               [1,6,6]];
 
-  console.log(zeroMatrixBrute(matrix));
+  console.log(zeroMatrix(matrix));
