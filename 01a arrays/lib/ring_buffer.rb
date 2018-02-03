@@ -3,12 +3,11 @@ class RingBuffer
   attr_reader :length
 
   def initialize
-
+    self.store, self.capacity, self.length, self.start_idx = StaticArray.new(8), 8, 0, 0
   end
 
   # O(1)
   def [](index)
-
   end
 
   # O(1)
@@ -16,31 +15,30 @@ class RingBuffer
 
   end
 
-  # O(1)
+ # O(1)
   def pop
-
   end
 
   # O(1) ammortized
   def push(val)
-
   end
 
   # O(1)
   def shift
-
   end
 
   # O(1) ammortized
   def unshift(val)
-
   end
 
   protected
   attr_accessor :capacity, :start_idx, :store
   attr_writer :length
 
-  def resize!
+  def check_index(index)
+  end
 
+
+  def resize!
   end
 end

@@ -13,7 +13,7 @@ class DynamicArray
     store[index]
   end
 
-  # O(1)
+  # O(1)gcm :""
   def []=(index, value)
     check_index(index)
     store[index] = value
@@ -21,7 +21,7 @@ class DynamicArray
 
   # O(1)
   def pop
-      raise "index out of bounds" unless (length > 0)
+    raise "index out of bounds" unless (length > 0)
 
     val, self[length - 1] = self[length - 1], nil
     self.length -= 1
