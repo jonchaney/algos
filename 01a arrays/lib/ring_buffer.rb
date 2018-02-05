@@ -3,7 +3,7 @@ class RingBuffer
   attr_reader :length
 
   def initialize
-    self.store, self.capacity, self.length, self.start_idx = StaticArray.new(3), 3, 0, 0
+    self.store, self.capacity, self.length, self.start_idx = StaticArray.new(8), 8, 0, 0
   end
 
   # O(1)
@@ -20,14 +20,22 @@ class RingBuffer
 
  # O(1)
   def pop
+    raise "index out of bounds" if (length == 0)
+
+    val, self[length - 1] = self[length - 1], nil
     self.length -= 1
+
+    val
   end
 
   # O(1) ammortized
   def push(val)
-    resize! if self.capacity == self.length
-    self.store[(self.start_idx + self.length) % self.capacity] = val
+    resize! if (length == capacity)
+
     self.length += 1
+    self[length - 1] = val
+
+    nil
   end
 
   # O(1)
