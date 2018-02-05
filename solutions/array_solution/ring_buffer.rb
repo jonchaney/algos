@@ -45,7 +45,7 @@ class RingBuffer
     raise "index out of bounds" if (length == 0)
 
     val, self[0] = self[0], nil
-    self.start_idx = (start_idx + 1) % capacity
+    self.start_idx = (self.start_idx + 1) % self.capacity
     self.length -= 1
 
     val
@@ -53,9 +53,9 @@ class RingBuffer
 
   # O(1) ammortized
   def unshift(val)
-    resize! if (length == capacity)
+    resize! if (self.length == self.capacity)
 
-    self.start_idx = (start_idx - 1) % capacity
+    self.start_idx = (self.start_idx - 1) % self.capacity
     self.length += 1
     self[0] = val
   end
@@ -65,7 +65,7 @@ class RingBuffer
   attr_writer :length
 
   def check_index(index)
-    unless (index >= 0) && (index < length)
+    unless (index >= 0) && (index < self.length)
       raise "index out of bounds"
     end
   end
