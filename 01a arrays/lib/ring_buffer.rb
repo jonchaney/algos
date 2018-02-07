@@ -11,7 +11,7 @@ class RingBuffer
     check_index(index)
     self.store[(self.start_idx + index) % self.capacity]
   end
-
+  
   # O(1)
   def []=(index, val)
     check_index(index)  
@@ -63,7 +63,7 @@ class RingBuffer
 
   def check_index(index)
     unless (index >= 0) && (index < length)
-      raise "index out of bounds"
+      return nil
     end
   end
 
