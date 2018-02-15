@@ -29,7 +29,28 @@ const removeDups = (head) => {
   }
 };
 
+// this does not use the hash buffer, but the time is O(n^2)
+const removeDupsNoBuffer = (head) => {
+  let curr = head;
+  let prev;
+  while (curr.next !== null) {
+    let runner = curr.next;
+    prev = curr;
+    while (runner.next !== null) {
+      if (curr.value === runner.value) {
+        prev.next = runner.next;
+        runner = runner.next;
+      } else {
+        prev = runner;
+        runner = runner.next;
+      }
+    }
+    curr = curr.next;
+  }
+};
+
 removeDups(head);
+removeDupsNoBuffer(head);
 
 // print linked list for testing
 curr = head;
