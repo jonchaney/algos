@@ -65,13 +65,12 @@ const kToLastElementTwo = (head, k) => {
 
 // recursive solution
 const kToLastElementRecursive = (head, k) => {
-  if (head === null) { return 0; }
-
+  if (head === null) { return -1; }
   let index = kToLastElementRecursive(head.next, k) + 1;
+  // console.log(index);
   if (index === k) {
     console.log(head.value);
   }
-
   return index;
 };
 
@@ -83,10 +82,10 @@ kToLastElementRecursive(head,0);
 
 
 // print list for testing.
-curr = head;
-console.log(curr.value);
-while (curr.next) {
-  curr = curr.next;
-  console.log(curr.value);
-}
+// curr = head;
+// console.log(curr.value);
+// while (curr.next) {
+//   curr = curr.next;
+//   console.log(curr.value);
+// }
 
