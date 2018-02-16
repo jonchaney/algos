@@ -2,7 +2,7 @@ const Node = require('./node.js');
 
 let head = new Node(1);
 let curr = head;
-let array = [2,3,4,5,6,7,8,9,10];
+let array = [2,3,4,5,6,7,8,9];
 // let array = [5, 4, 89, 2];
 
 // create unsorted linked list
@@ -36,10 +36,10 @@ const kToLastElementTwo = (head, k) => {
   if (head.next === null) { return head.value; }
   let p1 = head;
   let p2 = p1;
-  let length = 0;
+  let mid = 0;
 
   while (true) {
-    length+=2;
+    mid+=1;
     if (p2.next.next) {
       p2 = p2.next.next;
       p1 = p1.next;
@@ -49,21 +49,36 @@ const kToLastElementTwo = (head, k) => {
     }
   }
 
-  console.log(`p1: ${p1.value}, p2: ${p2.value}, length: ${length}`); 
+  // if mid is less than k increment to to node
+  if (k<=mid) {
+    for (let i = 0; i < mid-k; i++) {
+      p1 = p1.next;
+    }
+      return p1.value;
+  } else {
+
+  } 
+
+
 };
 
 
 // recursive solution
 const kToLastElementRecursive = (head, k) => {
-  if (head.next === null) { return head.value; }
+  if (head === null) { return 0; }
 
-  return kToLastElementRecursive(head.next, k);
+  let index = kToLastElementRecursive(head.next, k) + 1;
+  if (index === k) {
+    console.log(head.value);
+  }
+
+  return index;
 };
 
 // expected output: 8
 // console.log(kToLastElement(head, 4));
-kToLastElementTwo(head,0);
-// kToLastElementRecursive(head,0);
+// console.log(kToLastElementTwo(head,1));
+kToLastElementRecursive(head,0);
 
 
 
