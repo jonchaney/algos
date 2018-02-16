@@ -1,8 +1,12 @@
 class Node {
-  constructor() {
-    this.value = null;
+  constructor(value) {
+    this.value = value;
     this.next = null;
     this.prev = null;
+  }
+
+  append(node) {
+    this.next = node;
   }
 }
 
