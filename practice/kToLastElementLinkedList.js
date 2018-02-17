@@ -2,7 +2,7 @@ const Node = require('./node.js');
 
 let head = new Node(1);
 let curr = head;
-let array = [2,3,4,5,6,7,8,9];
+let array = [2,3,4,5,6,7,8,9,10];
 // let array = [5, 4, 89, 2];
 
 // create unsorted linked list
@@ -24,42 +24,28 @@ const kToLastElement = (head, k) => {
     curr = curr.next;
   }
   curr = head;
-  for(let i = 0; i < length-k; i++) {
+  for(let i = 0; i < (length-k)+1; i++) {
     curr = curr.next;
   }
   return curr.value;
 };
 
-// using two pointers, more efficient than the previous
-const kToLastElementTwo = (head, k) => {
-  // return head.value if list is one item
-  if (head.next === null) { return head.value; }
+const kToLastElementThree = (head, k) => {
   let p1 = head;
-  let p2 = p1;
-  let mid = 0;
+  let p2 = head;
 
-  while (true) {
-    mid+=1;
-    if (p2.next.next) {
-      p2 = p2.next.next;
-      p1 = p1.next;
-    } else {
-      p2 = p2.next;
-      break;
-    }
+  // move p1 k nodes into list
+  for (let i = 0; i < k; i++) {
+    if (p1 === null) return null; // out of bounds
+    p1 = p1.next;
   }
 
-  // if mid is less than k increment to to node
-  if (k<=mid) {
-    for (let i = 0; i < mid-k; i++) {
-      p1 = p1.next;
-    }
-      return p1.value;
-  } else {
-
-  } 
-
-
+  // move them up the list at the same pace when hits the end p2 will be at correct location
+  while (p1) {
+    p1 = p1.next;
+    p2 = p2.next;
+  }
+  return p2;
 };
 
 
@@ -67,7 +53,6 @@ const kToLastElementTwo = (head, k) => {
 const kToLastElementRecursive = (head, k) => {
   if (head === null) { return -1; }
   let index = kToLastElementRecursive(head.next, k) + 1;
-  // console.log(index);
   if (index === k) {
     console.log(head.value);
   }
@@ -94,10 +79,10 @@ const kToLastElementRecursiveTwo = (head, k) => {
 
 // expected output: 8
 // console.log(kToLastElement(head, 4));
-// console.log(kToLastElementTwo(head,1));
-kToLastElementRecursive(head,0);
+console.log(kToLastElementThree(head,1));
+// kToLastElementRecursive(head,0);
 // this solution only works in languages with pointers
-console.log(kToLastElementRecursiveTwo(head,0));
+// console.log(kToLastElementRecursiveTwo(head,0));
 
 
 
