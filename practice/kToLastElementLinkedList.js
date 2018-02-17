@@ -74,10 +74,30 @@ const kToLastElementRecursive = (head, k) => {
   return index;
 };
 
+const nthHelper = (head, k, i) => {
+  if (head === null) {
+    return null;
+  }
+  // node should be a point
+  let node = nthHelper(head.next,k , i);
+  i += 1;
+  if (i === k) {
+    return head;
+  }
+  return node;
+};
+
+const kToLastElementRecursiveTwo = (head, k) => {
+  let i = 0;
+  return nthHelper(head,k,i);
+};
+
 // expected output: 8
 // console.log(kToLastElement(head, 4));
 // console.log(kToLastElementTwo(head,1));
 kToLastElementRecursive(head,0);
+// this solution only works in languages with pointers
+console.log(kToLastElementRecursiveTwo(head,0));
 
 
 
