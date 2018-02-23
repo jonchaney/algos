@@ -7,12 +7,8 @@
 const head = require('./createLinkedList.js');
 const printLinkedList = require('./printLinkedList')
 
-// print list for testing.
-// printLinkedList(head);
-
 
 const deleteMiddleNode = (head, val) => {
-    // console.log(head)
     let curr = head.next,
         prev = head;
 
@@ -20,6 +16,7 @@ const deleteMiddleNode = (head, val) => {
         prev = curr;
         curr = curr.next;
     }
+
     prev.next = curr.next;
 };
 
