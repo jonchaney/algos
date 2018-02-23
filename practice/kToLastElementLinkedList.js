@@ -1,16 +1,4 @@
-const Node = require('./node.js');
-
-let head = new Node(1);
-let curr = head;
-let array = [2,3,4,5,6,7,8,9,10];
-// let array = [5, 4, 89, 2];
-
-// create unsorted linked list
-for (let i = 0; i < array.length; i++) {
-  curr.append(new Node(array[i]));
-  curr = curr.next;
-}
-
+const head = require('./createLinkedList.js');
 
 // brute force:
 // iterate to end of list to get length
@@ -35,7 +23,7 @@ const kToLastElementThree = (head, k) => {
   let p2 = head;
 
   // move p1 k nodes into list
-  for (let i = 0; i < k; i++) {
+  for (let i = 0; i <= k; i++) {
     if (p1 === null) return null; // out of bounds
     p1 = p1.next;
   }
@@ -79,18 +67,9 @@ const kToLastElementRecursiveTwo = (head, k) => {
 
 // expected output: 8
 // console.log(kToLastElement(head, 4));
-console.log(kToLastElementThree(head,1));
+console.log(kToLastElementThree(head,0).value);
 // kToLastElementRecursive(head,0);
 // this solution only works in languages with pointers
 // console.log(kToLastElementRecursiveTwo(head,0));
 
-
-
-// print list for testing.
-// curr = head;
-// console.log(curr.value);
-// while (curr.next) {
-//   curr = curr.next;
-//   console.log(curr.value);
-// }
 
