@@ -1,9 +1,9 @@
 // print list for testing.
 const printLinkedList = (head) => {
     let curr = head;
-    while (curr.next) {
-      curr = curr.next;
+    while (curr) {
       console.log(curr.value);
+      curr = curr.next;
     }
 };
 
