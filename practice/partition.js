@@ -16,42 +16,41 @@ const Node = require('./node.js');
 const paritition = (head, x) => {
     let curr_less = null;
     let curr_greater = null;
-    let head_less = null;
     let head_greater = null;
     let curr = head;
     // split list into two lists, one with elems < x, one with elems > x
     while (curr) {
+        let temp = new Node(curr.value);
         if (curr.value < x) {
-            if (curr_less === null) {
-                curr_less = new Node(curr.value)
-                head_less = curr_less;
+            if (curr_less) {
+                curr_less.append(temp)
+                curr_less = curr_less.next
             } else {
-                curr_less.append(curr.value)
+                curr_less = curr;
             }
-            curr_less = curr_less.next
         } else {
-            if (curr_greater === null) {
-                curr_greater = new Node(curr.value)
-                head_greater = curr_greater;
+            if (curr_greater) {
+                curr_greater.append(temp)
+                curr_greater = curr_greater.next
+                
             } else {
-                curr_greater.append(curr)
+                curr_greater = curr;
+                head_greater = curr_greater;
             }
-            curr_greater = curr_greater.next
         }
         curr = curr.next;
     }
 
-    // append list to each other
-    console.log('less')
-    printLinkedList(head_less);
-    console.log('gret')
-    printLinkedList(head_greater);
-    
+    // append list to each other, by appending curr_less to greater_head
+    curr_less.append(head_greater);
+    head = curr_less;
 }
 
 // input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 [partition=5]
 // expected output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
+printLinkedList(head);
+console.log("after");
 paritition(head,5);
-// printLinkedList(head);
+printLinkedList(head);
 
 
