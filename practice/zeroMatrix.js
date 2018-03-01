@@ -1,7 +1,7 @@
 // write an algorithm such that if an element in an MxN matrix is zero, 
 // the entire row and colunm are set to zero.
 
-// brute force
+// brute force is the best we got
 // O(nm)
 // keep track of what rows and columns the zeros are in
 // iterate over matrix again changing those rows and columns to zero
