@@ -6,6 +6,9 @@
 const printLinkedList = require('./printLinkedList')
 const Node = require('./node.js');
 
+
+// this problem is solved in O(n) -- n being the length of the longest list
+// because you have to check every node to add their value
 const sumLists = (nodeA, nodeB) => {
   let res;
   let value = 0;
@@ -60,5 +63,5 @@ for (let i = 0; i<arr.length; i++) {
 
 // call function
 // Input: (7-> 1 -> 6 -> 1) + (5 -> 9 -> 2).That is, 617 + 295. Output: 2 -> 1 -> 9, 1. That is, 912.
-printLinkedList(sumLists(nodeA, nodeB));
+printLinkedList(sumListsRecursion(nodeA, nodeB));
 // sumLists(nodeA, nodeB);
