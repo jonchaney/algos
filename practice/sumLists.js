@@ -13,7 +13,7 @@ const sumLists = (nodeA, nodeB) => {
   let resultHead = result;
   let currA = nodeA;
   let currB = nodeB;
-  while (currA || currB) {
+  while (currA && currB) {
     value += currA.value + currB.value
     if (value >= 10) {
       res = value % 10  
@@ -23,19 +23,27 @@ const sumLists = (nodeA, nodeB) => {
       result.value = value
       value = 0;
     }
-    result.next = new Node()
-    result = result.next
-    
+
+    if (currA.next && currB.next) {
+      result.next = new Node()
+      result = result.next
+    } else if (currA.next) {
+      result.next = new Node(currA.next.value + value)
+    } else if (currB.next) {
+      result.next = new Node(currB.next.value + value)
+    }
+
     currA = currA.next;
     currB = currB.next;
   }
+
   return resultHead;
 };
 
 // create linked lists 
 let nodeA = new Node(7);
 let curr = nodeA;
-let arr = [1,6]
+let arr = [1,6,1]
 for (let i = 0; i<arr.length; i++) {
   curr.next = new Node(arr[i])
   curr = curr.next;
@@ -51,6 +59,6 @@ for (let i = 0; i<arr.length; i++) {
 
 
 // call function
-// Input: (7-> 1 -> 6) + (5 -> 9 -> 2).That is, 617 + 295. Output: 2 -> 1 -> 9. That is, 912.
+// Input: (7-> 1 -> 6 -> 1) + (5 -> 9 -> 2).That is, 617 + 295. Output: 2 -> 1 -> 9, 1. That is, 912.
 printLinkedList(sumLists(nodeA, nodeB));
 // sumLists(nodeA, nodeB);
