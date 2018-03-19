@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <main id='main'>
+
+    </main>
+    
+</body>
+
+<script>
+    let mainBody = document.getElementById('main');
+    let button;
+    for (let i = 0; i < 20; i++) {
+        button = document.createElement('button');
+        button.data = i+1;
+        button.innerHTML = 'button'
+        button.onclick = (event) => {
+            alert(event.target.data)
+        }
+        mainBody.appendChild(button)
+    }
+</script>
+</html>
