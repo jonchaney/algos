@@ -1,7 +1,7 @@
 # implement a function to determine if a linked list is a palindrome
 require './rubyLinkedHelpers.rb'
 
-head = createLinkedList(["r", "a", "c", "e", "c","a","r"])
+head = createLinkedList(["d","a","d","a","d"])
 # printLinkedList(head)
 
 
@@ -28,5 +28,33 @@ def isPalindrome?(head)
     true
 end 
 
+# this solution uses the runner technique
+# O(n) time and O(n/2) space
+
+def isPalindromeRunner?(head)
+    slow = head
+    fast = head
+    stack = [] # only use push and pop methods to imitate a stack
+
+    while fast && fast.next
+        stack.push(slow.value)
+        slow = slow.next
+        fast = fast.next.next
+    end
+    
+    # if it has odd num of elements, skip middle element
+    if fast.nil?
+        stack.pop
+    end
+
+    while slow
+        top = stack.pop
+        return false if top != slow.value  
+        slow = slow.next
+    end 
+    true
+end 
+
 
 p isPalindrome?(head)
+p isPalindromeRunner?(head)
