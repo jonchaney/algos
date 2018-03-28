@@ -7,6 +7,7 @@
 
 // create two linked list, one with elements that are greater than x,
 // one with elements that are smaller than x and append them together.
+
 const head = require('./createLinkedList.js');
 const printLinkedList = require('./printLinkedList')
 const Node = require('./node.js');
@@ -22,7 +23,7 @@ const paritition = (node, x) => {
         } else {
             tail.next = node;
             tail = node;
-        }
+        }``
         node = next;
     }
     tail.next = null;
