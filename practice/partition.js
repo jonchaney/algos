@@ -23,11 +23,35 @@ const paritition = (node, x) => {
         } else {
             tail.next = node;
             tail = node;
-        }``
+        }
         node = next;
     }
     tail.next = null;
     return head;
+}
+
+const parititionExtraSpace = (node, x) => {
+    let head = node;
+    let less = [];
+    let more = [];
+    while (head) {
+        if (head.value < x) {
+            less.push(head.value)
+        } else {
+            more.push(head.value)
+        }
+        remove = head
+        head = head.next
+        remove = null
+    }
+
+    // create new list
+    head = new Node();
+    curr = head;
+    less.forEach((val) => {
+        curr.value = val
+        curr = curr.next
+    });
 }
 
 // input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 [partition=5]
