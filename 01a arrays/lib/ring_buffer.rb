@@ -22,6 +22,7 @@ class RingBuffer
 
  # O(1)
   def pop
+    raise 'index out of bounds' if self.length == 0
     val = self[length-1]
     self.length -= 1
     val 
@@ -36,6 +37,7 @@ class RingBuffer
 
   # O(1)
   def shift
+    raise 'index out of bounds' if self.length == 0
     val = self[0]
     self.start_idx = (self.start_idx + 1) % self.capacity
     self.length -= 1
@@ -46,7 +48,11 @@ class RingBuffer
   def unshift(val)
     resize! if self.length == self.capacity
     self.length += 1
-    self.start_idx = (self.start_idx - 1) % self.capacity
+    if self.start_idx == 0 
+      self.start_idx = self.capacity-1
+    else
+      self.start_idx -= 1
+    end 
     self[0] = val
   end
 
@@ -54,11 +60,15 @@ class RingBuffer
   attr_accessor :capacity, :start_idx, :store
   attr_writer :length
 
-  def check_index(index)
-
-  end
-
   def resize!
-    
+    new_store = StaticArray.new(self.capacity*2)
+    i = 0 
+    while i < self.length
+      new_store[i] = self[i]
+      i+=1
+    end
+    self.store = new_store
+    self.capacity *= 2
+    self.start_idx = 0
   end
 end
