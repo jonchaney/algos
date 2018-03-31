@@ -8,17 +8,22 @@
 require_relative 'ring_buffer'
 
 class QueueWithMax
+  attr_reader :store, :maxque
 
   def initialize
-
+    @store = RingBuffer.new
+    @length = 0
+    @max_stack = []
   end
 
   def enqueue(el)
-
+    @length+=1
+    @store.push(el)
   end
 
   def dequeue
-
+    @length-=1
+    @store.pop
   end
 
   def max
@@ -30,6 +35,6 @@ class QueueWithMax
   end
 
   def length
-
+    @length
   end
 end
