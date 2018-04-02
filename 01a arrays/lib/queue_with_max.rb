@@ -12,29 +12,42 @@ class QueueWithMax
 
   def initialize
     @store = RingBuffer.new
-    @length = 0
-    @max_queue = []
+    @maxque = RingBuffer.new
   end
 
   def enqueue(el)
-    @length+=1
     @store.push(el)
+    update_maxque(el)
   end
 
   def dequeue
-    @length-=1
-    @store.pop
+    val = @store.shift
+    @maxque.shift if @maxque[0] == val
+    val
   end
 
   def max
-
+    @maxque[0] if @maxque.length > 0
   end
 
   def update_maxque(el)
-
+    if @maxque.length == 0
+      @maxque.push(el)
+    else
+      # check tail, if tail is greater than element, then insert at tail
+      if @maxque[@maxque.length-1] > el 
+        @maxque.push(el)
+      else
+      # remove elements until @maxque is empty or tail is greater than the element
+        until @maxque.length == 0 || @maxque[@maxque.length-1] > el 
+          @maxque.pop
+        end 
+        @maxque.push(el)
+      end 
+    end
   end
 
   def length
-    @length
+    @store.length
   end
 end
