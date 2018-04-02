@@ -31,6 +31,7 @@ class QueueWithMax
   end
 
   def update_maxque(el)
+    # if maxque is empty add element
     if @maxque.length == 0
       @maxque.push(el)
     else
