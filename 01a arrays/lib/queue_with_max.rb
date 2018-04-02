@@ -13,7 +13,7 @@ class QueueWithMax
   def initialize
     @store = RingBuffer.new
     @length = 0
-    @max_stack = []
+    @max_queue = []
   end
 
   def enqueue(el)
