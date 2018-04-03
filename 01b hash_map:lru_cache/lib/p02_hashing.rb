@@ -5,8 +5,8 @@ end
 class Array
   def hash
     val = 0
-    self.each_with_index do |el, idx|
-      val += (el + idx).hash
+    self.each_with_index.inject(0) do |injection, (el, idx)|
+      val += (el.hash + idx.hash) ^ injection
     end
     val
   end
