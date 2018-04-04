@@ -10,20 +10,34 @@ class HashMap
   end
 
   def include?(key)
+    bucket(key).include?(key)
   end
 
   def set(key, val)
+    resize! if @store.length == @count
+    if @store[key.hash % num_buckets].include?(key)
+      @store[key.hash % num_buckets].update(key, val)
+    else 
+      @count += 1
+      bucket(key).append(key, val)
+    end 
   end
 
   def get(key)
+    @store[key.hash % num_buckets].get(key)
   end
 
   def delete(key)
+    @count -= 1
+    bucket(key).remove(key)
   end
 
   def each
+    @store.each do |link|
+      yield [link.key, link.val]
+    end 
   end
-
+  
   # uncomment when you have Enumerable included
   # def to_s
   #   pairs = inject([]) do |strs, (k, v)|
@@ -45,6 +59,6 @@ class HashMap
   end
 
   def bucket(key)
-    # optional but useful; return the bucket corresponding to `key`
-  end
+    @store[key.hash % num_buckets]
+  end 
 end
