@@ -14,7 +14,7 @@ describe LRUCache do
           receive(:call).exactly(1).times.with(i).and_return(square)
         )
         expect(lru.get(i)).to eq(square)
-      end#
+      end
     end
 
     it "should not call the proc for cached inputs" do
