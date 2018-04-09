@@ -64,12 +64,14 @@ class LinkedList
     if @head.nil?
       @head = Node.new(key, val)
       @tail = @head
+      node = @head
     else 
       node = Node.new(key, val)
       @tail.next = node
       node.prev = @tail
       @tail = node
     end
+    node
   end
 
   def update(key, val)
