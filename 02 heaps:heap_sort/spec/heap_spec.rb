@@ -25,6 +25,8 @@ describe BinaryMinHeap do
       expect(BinaryMinHeap.heapify_down([7, 4, 5], 0)).to eq([4, 7, 5])
       expect(BinaryMinHeap.heapify_down([7, 4, 5, 6, 8], 0))
         .to eq([4, 6, 5, 7, 8])
+      expect(BinaryMinHeap.heapify_down([7, 9, 6, 10, 13, 7, 8], 0))
+        .to eq([6, 9, 7, 10, 13, 7, 8])
     end
 
     it "heapify_ups correctly" do 
