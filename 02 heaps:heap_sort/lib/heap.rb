@@ -2,15 +2,19 @@ class BinaryMinHeap
   attr_reader :store, :prc
 
   def initialize(&prc)
+    @store = []
+    @count = 0
   end
 
   def count
+    @count
   end
 
   def extract
   end
 
   def peek
+    @store.first
   end
 
   def push(val)
