@@ -47,7 +47,7 @@ class BinaryMinHeap
   end
 
   def self.heapify_down(array, parent, len = array.length, &prc)
-    unless prc 
+    unless prc  
       prc = Proc.new do |el1, el2|
         el1 > el2
       end
