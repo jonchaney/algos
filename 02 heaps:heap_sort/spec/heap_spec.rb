@@ -27,6 +27,8 @@ describe BinaryMinHeap do
         .to eq([4, 6, 5, 7, 8])
       expect(BinaryMinHeap.heapify_down([7, 8, 6, 9, 10, 7, 9], 0))
         .to eq([6, 8, 7, 9, 10, 7, 9]) # added to test right child swaps
+      expect(BinaryMinHeap.heapify_down([9, 6, 5, 7, 8], 0))
+        .to eq([5, 6, 9, 7, 8]) # added to ensure sway occurs with smallest of two children
     end
 
     it "heapify_ups correctly" do 
