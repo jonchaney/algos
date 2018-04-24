@@ -4,6 +4,7 @@ class BinaryMinHeap
   def initialize(&prc)
     @store = []
     @count = 0
+    @prc ||= Proc.new { |el1, el2| el1 <=> el2 }
   end
 
   def count
@@ -67,7 +68,6 @@ class BinaryMinHeap
 
   def self.heapify_up(array, child_idx, len = array.length, &prc)
     prc ||= Proc.new { |el1, el2| el1 <=> el2 }
-
     return nil if child_idx.zero?
     parent = BinaryMinHeap.parent_index(child_idx)
     if prc.call(array[parent], array[child_idx]) >= 0
