@@ -54,16 +54,16 @@ class BinaryMinHeap
     left_idx = children[0]
     right_idx = children[1]
 
-    return array if children.all? { |child| prc.call(array[parent], array[child]) <= 0 }
+    return array if children.all? { |child| prc.call(array[parent], array[child]) == -1 }
     
     if children.length == 1 
       swap_idx = left_idx
     else 
-      swap_idx = prc.call(array[left_idx], array[right_idx]) <= 0 ? left_idx : right_idx
+      swap_idx = prc.call(array[left_idx], array[right_idx]) == -1 ? left_idx : right_idx
     end 
 
     array[parent], array[swap_idx] = array[swap_idx], array[parent]
-    BinaryMinHeap.heapify_down(array, swap_idx)
+    BinaryMinHeap.heapify_down(array, swap_idx, len, &prc)
 
     array
   end

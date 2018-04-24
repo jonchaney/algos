@@ -13,12 +13,14 @@ class Array
       i+=1
     end 
     
-    len = length-1
-    while len >= 0
-      self[0], self[len] = self[len], self[0]
+    len = length
+    i = length-1
+    while len > 0
+      self[0], self[i] = self[i], self[0]
       len -= 1
+      i -= 1
       BinaryMinHeap.heapify_down(self, 0, len, &prc)
-    end
+    end 
 
   end
 end
