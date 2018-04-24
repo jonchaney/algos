@@ -12,11 +12,11 @@ class Array
       BinaryMinHeap.heapify_up(self, i, self.length, &prc)
       i+=1
     end 
-
-    len = length-1 # 4
+    
+    len = length-1
     while len >= 0
       self[0], self[len] = self[len], self[0]
-      len-=1
+      len -= 1
       BinaryMinHeap.heapify_down(self, 0, len, &prc)
     end
 

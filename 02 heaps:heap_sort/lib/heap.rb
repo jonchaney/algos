@@ -15,7 +15,7 @@ class BinaryMinHeap
     @store[0], @store[@count - 1] = @store[@count - 1], @store[0]
     val = @store.pop
     @count -= 1
-    BinaryMinHeap.heapify_down(@store, 0, @store.length, &prc)
+    BinaryMinHeap.heapify_down(@store, 0)
     val
   end
 
@@ -26,7 +26,7 @@ class BinaryMinHeap
   def push(val)
     @store.push(val)
     @count += 1
-    BinaryMinHeap.heapify_up(@store, @count - 1, @store.length, &prc)
+    BinaryMinHeap.heapify_up(@store, @count - 1)
   end
 
   def self.child_indices(len, parent)
@@ -54,6 +54,8 @@ class BinaryMinHeap
     left_idx = children[0]
     right_idx = children[1]
 
+    return array if children.all? { |child| prc.call(array[parent], array[child]) <= 0 }
+    
     if children.length == 1 
       swap_idx = left_idx
     else 
@@ -61,13 +63,14 @@ class BinaryMinHeap
     end 
 
     array[parent], array[swap_idx] = array[swap_idx], array[parent]
-    BinaryMinHeap.heapify_down(array, swap_idx, len, &prc)
+    BinaryMinHeap.heapify_down(array, swap_idx)
 
     array
   end
 
   def self.heapify_up(array, child_idx, len = array.length, &prc)
     prc ||= Proc.new { |el1, el2| el1 <=> el2 }
+
     return nil if child_idx.zero?
     parent = BinaryMinHeap.parent_index(child_idx)
     if prc.call(array[parent], array[child_idx]) >= 0

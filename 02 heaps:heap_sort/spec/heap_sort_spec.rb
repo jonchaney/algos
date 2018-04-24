@@ -6,6 +6,9 @@ describe Array do
       arr = [4,2,1,3,5,7,8,9]
       arr.heap_sort!
       expect(arr).to eq([1,2,3,4,5,7,8,9])
+      arr = [6,4,5,7,8]
+      arr.heap_sort!
+      expect(arr).to eq([4,5,6,7,8])
     end
 
     it "sorts a reversed array" do
