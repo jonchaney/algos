@@ -1,17 +1,41 @@
 # There are many ways to implement these methods, feel free to add arguments 
 # to methods as you see fit, or to create helper methods.
+require_relative 'bst_node'
 
 class BinarySearchTree
+  attr_accessor :root
   def initialize
+    @root = nil
   end
 
   def insert(value)
+    if @root 
+      append(@root, value)
+    else 
+      @root = BSTNode.new(value)
+    end 
   end
 
   def find(value, tree_node = @root)
+    return nil if tree_node.nil?
+    if tree_node.value == value 
+      return tree_node
+    else 
+      if value > tree_node.value 
+        find(value, tree_node.right)
+      else 
+        find(value, tree_node.left)
+      end 
+    end 
   end
 
   def delete(value)
+      node = self.find(value)
+      if node 
+        if node.right.nil? && node.left.nil?
+          
+        end 
+      end 
   end
 
   # helper method for #delete:
@@ -30,5 +54,22 @@ class BinarySearchTree
 
   private
   # optional helper methods go here:
+
+  # recursive algorithm to append to the BST
+  def append(node, value)
+    if value > node.value 
+      if node.right 
+        append(node.right, value)
+      else 
+        node.right = BSTNode.new(value)
+      end 
+    else 
+      if node.left 
+        append(node.left, value)
+      else 
+        node.left = BSTNode.new(value)
+      end 
+    end 
+  end 
 
 end
