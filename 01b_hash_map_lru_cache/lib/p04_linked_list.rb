@@ -13,8 +13,8 @@ class Node
   end
 
   def remove
-    @prev.next = @next
-    @next.prev = @prev
+      @prev.next = @next
+      @next.prev = @prev
   end
 end
 
@@ -87,15 +87,16 @@ class LinkedList
 
   def remove(key)
     curr = @head 
-    while curr 
-      if (curr.key == key) 
-        if curr.prev 
+    if curr.key == key 
+      @head = @head.next
+    else 
+      while curr 
+        if (curr.key == key) 
           curr.remove
-        else
-          @head = curr.next
+          curr = @tail
         end
+        curr = curr.next
       end
-      curr = curr.next
     end  
   end
 
