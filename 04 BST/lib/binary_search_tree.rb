@@ -33,7 +33,18 @@ class BinarySearchTree
       node = self.find(value)
       if node 
         if node.right.nil? && node.left.nil?
-          
+          # if not the root node
+          if node.parent
+           # find the correct node and delete it
+           if node.parent.left.value == value
+            node.parent.left = nil 
+           else   
+            node.parent.right = nil 
+           end 
+          else 
+            # remove root
+            @root = nil
+          end 
         end 
       end 
   end
@@ -61,13 +72,13 @@ class BinarySearchTree
       if node.right 
         append(node.right, value)
       else 
-        node.right = BSTNode.new(value)
+        node.right = BSTNode.new(value, node)
       end 
     else 
       if node.left 
         append(node.left, value)
       else 
-        node.left = BSTNode.new(value)
+        node.left = BSTNode.new(value, node)
       end 
     end 
   end 
