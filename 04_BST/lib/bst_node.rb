@@ -3,6 +3,7 @@ class BSTNode
   attr_accessor :left, :right
   def initialize(value)
     @value = value 
+    # @color = color
     @left = nil
     @right = nil 
   end

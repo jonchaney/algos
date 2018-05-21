@@ -1,7 +1,7 @@
 # There are many ways to implement these methods, feel free to add arguments 
 # to methods as you see fit, or to create helper methods.
 require_relative 'bst_node'
-
+require 'byebug'
 class BinarySearchTree
   attr_accessor :root
   def initialize
@@ -43,22 +43,50 @@ class BinarySearchTree
   end
 
   def depth(tree_node = @root)
-    return 0 if @root.left.nil? && @root.right.nil?
-    right = depth(tree_node)
-    left = depth(tree_node)
-    if left > right
-      return left 
+    if tree_node.nil?
+      return -1;
+    else
+      left_depth = depth(tree_node.left)
+      right_depth = depth(tree_node.right)
+
+      if left_depth > right_depth
+        return left_depth + 1
+      else
+        return right_depth + 1
+      end
     end
-    right
   end 
 
   def is_balanced?(tree_node = @root)
+    return true if tree_node.nil?
+
+    balanced = true
+    left_depth = depth(tree_node.left)
+    right_depth = depth(tree_node.right)
+    balanced = false if (left_depth - right_depth).abs > 1
+
+    if balanced && is_balanced?(tree_node.left) && is_balanced?(tree_node.right)
+      return true
+    end
+
+    false
 
   end
 
   def in_order_traversal(tree_node = @root, arr = [])
-  end
+    # left children, itself, right children
+    if tree_node.left
+      in_order_traversal(tree_node.left, arr)
+    end
 
+    arr.push(tree_node.value)
+
+    if tree_node.right
+      in_order_traversal(tree_node.right, arr)
+    end
+
+    arr
+  end
 
   private
   # optional helper methods go here:
